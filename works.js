@@ -25,12 +25,42 @@
 var PROFILE_LINK = "https://www.instagram.com/nfx_motion";
 
 
-// ---------- معلومات التواصل (للفوتر) — يلي بتتركو فاضي ما بيطلع ----------
+// ---------- فيديوهات المقدمة (أول الموقع) ----------
+//  نفس طريقة الأقسام:  "اسم الملف | العنوان | الرابط"
+var INTRO = { layout: "portrait", videos: [
+  "hero-1.mp4 |  | https://drive.google.com/file/d/1dQb7exxQeB7cJJ90NDcLLkCccbhVpHdq/view | tall",
+  "hero-2.mp4 |  | https://www.instagram.com/reel/Dfp0rNaoQjY/ | tall",
+]};
+
+
+// ---------- معلومات التواصل — يلي بتتركو فاضي ما بيطلع ----------
 var CONTACT = {
-  phone:     "",
-  email:     "",
-  instagram: "nfx_motion"
+  whatsapp:        "00971501167107",
+  whatsappDisplay: "+971 50 116 7107",
+  email:           "",
+  instagram:       "nfx_motion"
 };
+
+
+// ---------- شريط الشركات ----------
+//  كل سطر:  "اسم الشركة | اسم ملف اللوغو"
+//  اللوغوهات بتنحط جوّا فولدر images/clients. إذا ما في لوغو، بيطلع اسم الشركة مكتوب
+//  الشريط مخفي لحتى تضيف أول شركة
+var CLIENTS = [
+  // مثال:  "Syriatel | syriatel.png",
+];
+
+
+// ---------- قسم About ----------
+//  النص العادي = فقرة.  القائمة بين [ ] = صف أرقام:  "الرقم | الوصف"
+//  ⚠️ النصوص والأرقام تجريبية، لازم تتبدل بالحقيقية قبل النشر
+var ABOUT = [
+  "I'm Yaman, a motion graphics designer and video editor working under the name NFX Motion. I design and animate logo reveals, YouTube intros, podcast hooks, commercials and AI-assisted short films.",
+  [ "6+ | Years of experience", "300+ | Videos delivered", "50+ | Brands and creators" ],
+  "Every project starts with the idea and the rhythm. I build each frame until the motion feels right, not just busy, so the message lands in the first seconds and people keep watching.",
+  [ "2M+ | Views on client content", "8 | Countries reached", "48h | Average first draft" ],
+  "Whether it's a brand launch, a TV program or a quick reel, I bring the same care to it: clear communication, fast delivery and work that brings results.",
+];
 
 
 // ---------- الأعمال المختارة (فوق، بلا عنوان) ----------
@@ -46,9 +76,10 @@ var FEATURED = { layout: "portrait", big: true, videos: [
 
 // ---------- الأقسام ----------
 //  layout: الشكل الافتراضي للقسم ("landscape" عرضي أو "portrait" طولي)
+//  titleAr: اسم القسم لما الموقع يكون بالعربي
 var SECTIONS = [
 
-  { title: "Podcast Hooks", layout: "landscape",
+  { title: "Podcast Hooks", titleAr: "مقتطفات بودكاست", layout: "landscape",
     videos: [
       "podcast-1.mp4 | intro 1 | https://drive.google.com/file/d/1-kqMpXYjEb0BhaN6h_5sx42YnC_AhASY/view",
       "podcast-2.mp4 | intro 2 | https://drive.google.com/file/d/19VX6k7Lg8XMbeTghluP_iKUzRbBFRnKi/view",
@@ -64,7 +95,7 @@ var SECTIONS = [
       "podcast-8.mp4 |  | ",
     ]},
 
-  { title: "2D Motion Graphics", layout: "portrait",
+  { title: "2D Motion Graphics", titleAr: "موشن غرافيك ثنائي الأبعاد", layout: "portrait",
     videos: [
       "motion-1.mp4  | 2d Motion Graphic | https://www.instagram.com/reel/Dc8x2ewu0QY/",                        // مافا
       "motion-2.mp4  | 2d Motion Graphic | https://drive.google.com/file/d/1UQnGAHqkFvJm6i3DHB7m99-k2JcK2dTC/view", // منصة وهج ١
@@ -85,19 +116,19 @@ var SECTIONS = [
       "motion-15.mp4 |  |  | wide",
     ]},
 
-  { title: "Ai Short Films", layout: "landscape",
+  { title: "Ai Short Films", titleAr: "أفلام قصيرة بالذكاء الاصطناعي", layout: "landscape",
     videos: [
       "ai-1.mp4 | Opening of the NASTEX Exhibition in the Presence of President Ahmed al-Sharaa. | https://drive.google.com/file/d/1XiPGcaJUWYCpHdJ441Lkj2WiCBuyRRPh/view",
       "ai-2.mp4 | Syrian Airlines | https://drive.google.com/file/d/1CawEEsN7YrPddiUdUvwldW1TOm7qxKh5/view",
+      "ai-3.mp4 |  | https://drive.google.com/file/d/1ZzEb8NSstmPMc1GDWVTRjDXQNdJSaCEh/view | wide",
     ],
     spare: [
-      "ai-3.mp4 |  | ",
       "ai-4.mp4 |  | ",
       "ai-5.mp4 |  | ",
       "ai-6.mp4 |  | ",
     ]},
 
-  { title: "Speed Ramping Reels", layout: "portrait",
+  { title: "Speed Ramping Reels", titleAr: "ريلز سبيد رامبينغ", layout: "portrait",
     videos: [
       "ramp-1.mp4 | Speed Ramping | https://drive.google.com/file/d/1RHLgOYGObhkfZlU5XNi8RA2l-aWCWjMA/view", // مهاجر قصير
       "ramp-2.mp4 | Speed Ramping | https://drive.google.com/file/d/1Au8livNFQGptsze2HzNrF6d5lcFmwLPo/view", // الخزائن المتقدمة
@@ -111,7 +142,7 @@ var SECTIONS = [
       "ramp-8.mp4 |  | ",
     ]},
 
-  { title: "GFX", layout: "landscape",
+  { title: "GFX", titleAr: "GFX", layout: "landscape",
     videos: [
       "gfx-1.mp4 | Hajar | https://drive.google.com/file/d/1aMTzwpI83-TV32a-NyZffaDi1AEutXWB/view",
     ],
@@ -123,7 +154,7 @@ var SECTIONS = [
       "gfx-4.mp4 |  | ",
     ]},
 
-  { title: "Youtube Intros", layout: "landscape",
+  { title: "Youtube Intros", titleAr: "مقدمات يوتيوب", layout: "landscape",
     videos: [
       "intro-1.mp4 | intro 1 | https://www.instagram.com/reel/DJUOaMhqhT2/", // باب الحارة
       "intro-2.mp4 | intro 2 | https://www.instagram.com/reel/DG5qolbqu9c/", // غيث مروان
@@ -137,7 +168,7 @@ var SECTIONS = [
       "intro-8.mp4 |  | ",
     ]},
 
-  { title: "Logo Animation", layout: "landscape",
+  { title: "Logo Animation", titleAr: "تحريك الشعارات", layout: "landscape",
     videos: [
       "logo-1.mp4 | Logo Animation | ",
       "logo-2.mp4 | Logo Animation | ",
@@ -149,4 +180,16 @@ var SECTIONS = [
       "logo-6.mp4 |  |  | wide",
     ]},
 
+];
+
+
+// ---------- قسم About بالعربي (بيطلع لما الزائر يحوّل الموقع للعربي) ----------
+//  نفس الترتيب والطريقة تبع ABOUT
+//  ⚠️ النصوص والأرقام تجريبية، لازم تتبدل بالحقيقية قبل النشر
+var ABOUT_AR = [
+  "أنا يمان، مصمم موشن غرافيك ومونتير أعمل باسم NFX Motion. أصمم وأحرّك الشعارات ومقدمات يوتيوب ومقتطفات البودكاست والإعلانات والأفلام القصيرة المصنوعة بمساعدة الذكاء الاصطناعي.",
+  [ "6+ | سنوات خبرة", "300+ | فيديو تم تسليمه", "50+ | علامة تجارية وصانع محتوى" ],
+  "كل مشروع يبدأ من الفكرة والإيقاع. أبني كل فريم حتى تصبح الحركة صحيحة لا مزدحمة، لتصل الرسالة من الثواني الأولى ويستمر الناس في المشاهدة.",
+  [ "2M+ | مشاهدة لمحتوى العملاء", "8 | دول وصل إليها العمل", "48h | متوسط وقت المسودة الأولى" ],
+  "سواء كان إطلاق علامة تجارية أو برنامجاً تلفزيونياً أو ريلز سريعاً، أعطيه نفس الاهتمام: تواصل واضح، وتسليم سريع، وعمل يحقق نتائج.",
 ];
